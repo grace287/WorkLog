@@ -8,16 +8,12 @@ export interface ToastOptions {
   variant?: ToastVariant;
 }
 
+const TOAST_EVENT = 'worklog-toast';
+
 /**
- * 토스트 알림. (나중에 Toaster UI 연동 가능)
+ * 토스트 알림. Toaster가 있으면 UI에 표시, 없으면 console.
  */
 export function toast(options: ToastOptions) {
-  const msg = [options.title, options.description].filter(Boolean).join(': ');
-  if (typeof window !== 'undefined') {
-    if (options.variant === 'destructive') {
-      console.error('[Toast]', msg);
-    } else {
-      console.log('[Toast]', msg);
-    }
-  }
+  if (typeof window === 'undefined') return;
+  window.dispatchEvent(new CustomEvent(TOAST_EVENT, { detail: options }));
 }
