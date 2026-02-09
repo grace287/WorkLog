@@ -1,0 +1,18 @@
+---
+description: WorkLog 프로젝트 공통 규칙 (응답 언어, 스택, 구조)
+alwaysApply: true
+---
+
+# WorkLog 프로젝트 규칙
+
+## 언어
+- **응답은 한국어로** 작성한다. 코드/변수명/타입은 영어 유지.
+
+## 스택
+- **Backend**: FastAPI, SQLAlchemy, Pydantic, Alembic, PostgreSQL. 인증은 JWT, 예외는 `app.core.exceptions` 커스텀 클래스 사용.
+- **Frontend**: Next.js (App Router), React, Tailwind. API 호출은 `@/lib/api/client` (axios).
+
+## 구조
+- Backend: `app/api/` 라우터, `app/services/` 비즈니스 로직, `app/schemas/` 요청/응답, `app/models/` DB 모델.
+- API prefix: `/api` (예: `/api/auth/signup`, `/api/tasks`).
+- 커밋/PR 제안 시 scope 예: `backend`, `frontend`, `api`, `auth`, `tasks`.
